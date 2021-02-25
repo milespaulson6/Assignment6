@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BookListViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Letrinia Book List</h1>
+</div>
+
+<!--The 3 new bootstrap ways that i used were table-striped, it makes each line a different color
+    also the new button that when you click on it it shows the top 100 books 
+    link and disappears when you click on it again
+    Lastly i made the table change color when you hover over it.-->
+<div>
+    <!--Here is the table of the products-->
+    <br />
+    <table class=" table-hover table-striped table-bordered table-layout: auto">
+        <thead class="text-center">
+            <tr><th>Book ID</th><th>Title</th><th>AuthorFirst</th><th>AuthorMiddle</th>
+            <th>AuthorLast</th><th>Publisher</th><th>ISBN</th><th>Classification</th><th>Category</th>
+            <th>Price</th><th>PageLength</th></tr>
+
+        </thead>
+        <tbody class="text-center">
+            @foreach (var x in Model.Products)
+            {
+                //This is the list of products outputted in a table
+                <tr>
+                    <td style="background-color:lightblue">@x.BookID</td>
+                    <td>@x.Title</td>
+                    <td>@x.AuthorFirst</td>
+                    <td>@x.AuthorMiddle</td>
+                    <td>@x.AuthorLast</td>
+                    <td>@x.Publisher</td>
+                    <td>@x.ISBN</td>
+                    <td>@x.Classification</td>
+                    <td>@x.Category</td>
+                    <td>$@x.Price</td>
+                    <td>@x.PageLength</td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+<div asp-validation-summary="All"></div>
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-danger"
+     class="btn-group pull-right m-3"></div>
+<br /><br />
+<div class="container text-center align-content-center">
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Surprise!</button>
+    <br />
+    <br />
+    <div id="demo" class="collapse">
+        <a href="https://www.goodreads.com/list/show/9440.100_Best_Books_of_All_Time_The_World_Library_List"  target="_blank">Click here to see the top 100 books of all time!</a>
+    </div>
+</div>
+
+
+
+
+
